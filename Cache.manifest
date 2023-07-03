@@ -2,7 +2,6 @@ CACHE MANIFEST
 CACHE: 
 disableupdates.bin
 enableupdates.bin
-exitidu.bin
 fan50.bin
 fan55.bin
 fan60.bin
@@ -11,6 +10,7 @@ fan70.bin
 fan75.bin
 fan80.bin
 ftp.bin
+goldhen2b.bin
 goldhen_212_900.bin
 goldhen_2.2.4_900.bin
 goldhen_2.3_900.bin
