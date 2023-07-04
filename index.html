@@ -10,7 +10,7 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
- body {
+body {
       margin: 0;
       padding: 0;
       background-color: rgba(0, 0, 0, 0.5);
@@ -22,7 +22,7 @@ background-size:cover;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 9999;
+      z-index: -1;
     }
 
     #video-overlay {
@@ -714,28 +714,24 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-<!-- El contenedor del video -->
-  <div id="video-container">
-    <div id="video-overlay"></div>
-    <div id="video-player"></div>
-  </div>
+ <!-- El contenedor del video -->
+  <div id="video-container"></div>
 
   <!-- Script para cargar el reproductor de YouTube -->
   <script>
     // Carga el reproductor de YouTube
     function loadYouTubeVideo() {
       var player;
-      var videoPlayer = document.getElementById("video-player");
 
       // Crea el reproductor de YouTube
-      player = new YT.Player(videoPlayer, {
-        videoId: "KzPy6EOF5S8", // Reemplaza con el ID del video de YouTube
+      player = new YT.Player("video-container", {
+        videoId: "VIDEO_ID", // Reemplaza con el ID del video de YouTube
         playerVars: {
           autoplay: 1,
           controls: 0,
           modestbranding: 1,
           loop: 1,
-          playlist: "VIDEO_ID" // Reemplaza con el ID del video de YouTube
+          playlist: "KzPy6EOF5S8" // Reemplaza con el ID del video de YouTube
         },
         events: {
           onReady: onPlayerReady
@@ -743,7 +739,10 @@ tempC.value=60;
       });
 
       // Cambia el estado del overlay al pasar el cursor sobre él
-      var videoOverlay = document.getElementById("video-overlay");
+      var videoOverlay = document.createElement("div");
+      videoOverlay.id = "video-overlay";
+      document.body.appendChild(videoOverlay);
+
       videoOverlay.addEventListener("mouseenter", function () {
         this.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
       });
