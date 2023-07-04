@@ -10,10 +10,9 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
-   body {
+  body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
     }
 
     #video-container {
@@ -23,13 +22,9 @@ background-size:cover;
       width: 100%;
       height: 100%;
       z-index: -1;
-      pointer-events: none;
     }
 
     #video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
     }
@@ -211,6 +206,7 @@ opacity:0.7;
 
 
     </style>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="utf-8">
 <title>JotaSoft Host 9.00 OF</title>
 		<script>
@@ -706,22 +702,18 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
- <!-- El div donde se mostrará el video -->
-  <div id="video-container"></div>
+ <!-- El contenedor del video -->
+  <div id="video-container">
+    <iframe src="https://www.youtube.com/embed/JahV2H9iChM?autoplay=1" allowfullscreen></iframe>
+  </div>
 
-  <!-- Script para cargar el reproductor de YouTube -->
+  <!-- Script para mover el iframe detrás de otros elementos -->
   <script>
-    // Crea un iframe y lo inserta en el contenedor
-    function loadYouTubeVideo() {
-      var container = document.getElementById("video-container");
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube.com/embed/JahV2H9iChM?autoplay=1";
-      iframe.allowFullscreen = true;
-      container.appendChild(iframe);
-    }
-
-    // Ejecuta la función para cargar el video cuando se cargue la página
-    window.onload = loadYouTubeVideo;
+    $(document).ready(function() {
+      var videoContainer = $("#video-container");
+      var iframe = videoContainer.find("iframe");
+      iframe.insertBefore(videoContainer);
+    });
   </script>
 </body>
 
