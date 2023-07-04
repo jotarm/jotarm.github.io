@@ -707,7 +707,7 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-<!-- El div donde se mostrará el video -->
+ <!-- El div donde se mostrará el video -->
   <div id="video-container"></div>
 
   <!-- Script para cargar el reproductor de YouTube -->
@@ -723,8 +723,7 @@ tempC.value=60;
           controls: 0,
           modestbranding: 1,
           loop: 1,
-          playlist: "JahV2H9iChM", // Reemplaza con el ID del video de YouTube
-          mute: 0 // Activa el sonido
+          playlist: "JahV2H9iChM" // Reemplaza con el ID del video de YouTube
         },
         events: {
           onReady: onPlayerReady
@@ -734,7 +733,7 @@ tempC.value=60;
 
     // Función ejecutada cuando el reproductor está listo
     function onPlayerReady(event) {
-      event.target.playVideo(); // Inicia la reproducción del video
+      event.target.mute(); // Reproduce el video sin sonido
     }
 
     // Carga la API de YouTube
