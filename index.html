@@ -682,7 +682,24 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-<iframe width="560" height="315" src="iframe.html"></iframe>
+<div id="video-container"></div>
+
+  <!-- Script para cargar el reproductor de YouTube -->
+  <script>
+    // Crea un iframe y lo inserta en el contenedor
+    function loadYouTubeVideo() {
+      var container = document.getElementById("video-container");
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/VIDEO_ID?autoplay=1";
+      iframe.width = "560";
+      iframe.height = "315";
+      iframe.allowFullscreen = true;
+      container.appendChild(iframe);
+    }
+
+    // Ejecuta la función para cargar el video cuando se cargue la página
+    window.onload = loadYouTubeVideo;
+  </script>
 </body>
 
 </html>
