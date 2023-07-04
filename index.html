@@ -13,7 +13,6 @@ background-size:cover;
 body {
       margin: 0;
       padding: 0;
-      background-color: rgba(0, 0, 0, 0.5);
     }
 
     #video-container {
@@ -25,20 +24,7 @@ body {
       z-index: -1;
     }
 
-    #video-overlay {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: transparent;
-    }
-
-    #video-overlay:hover {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    #video-player {
+    #video-container iframe {
       width: 100%;
       height: 100%;
     }
@@ -227,6 +213,7 @@ opacity:0.7;
 			window.applicationCache.onprogress=function(a){document.getElementById("progress").innerHTML=(Math.round(100*(a.loaded/a.total)))+"%";};
 			window.applicationCache.oncached=function(){document.getElementById("progress").innerHTML="Page Cached Successfully!!";setTimeout(function(){document.getElementById("progress").innerHTML="Reopen the Page !!"; }, 1500);};
 		</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 function load_poc(){
  var req = new XMLHttpRequest();
@@ -714,59 +701,18 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
- <!-- El contenedor del video -->
-  <div id="video-container"></div>
+<!-- El contenedor del video -->
+  <div id="video-container">
+    <iframe src="https://www.youtube.com/embed/KzPy6EOF5S8?autoplay=1" allowfullscreen></iframe>
+  </div>
 
-  <!-- Script para cargar el reproductor de YouTube -->
+  <!-- Script para mover el iframe detrás de otros elementos -->
   <script>
-    // Carga el reproductor de YouTube
-    function loadYouTubeVideo() {
-      var player;
-
-      // Crea el reproductor de YouTube
-      player = new YT.Player("video-container", {
-        videoId: "VIDEO_ID", // Reemplaza con el ID del video de YouTube
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          modestbranding: 1,
-          loop: 1,
-          playlist: "KzPy6EOF5S8" // Reemplaza con el ID del video de YouTube
-        },
-        events: {
-          onReady: onPlayerReady
-        }
-      });
-
-      // Cambia el estado del overlay al pasar el cursor sobre él
-      var videoOverlay = document.createElement("div");
-      videoOverlay.id = "video-overlay";
-      document.body.appendChild(videoOverlay);
-
-      videoOverlay.addEventListener("mouseenter", function () {
-        this.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-      });
-
-      videoOverlay.addEventListener("mouseleave", function () {
-        this.style.backgroundColor = "transparent";
-      });
-    }
-
-    // Función ejecutada cuando el reproductor está listo
-    function onPlayerReady(event) {
-      event.target.playVideo();
-    }
-
-    // Carga la API de YouTube
-    function loadYouTubeAPI() {
-      var tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-
-    // Carga la API de YouTube cuando se cargue la página
-    window.onload = loadYouTubeAPI;
+    $(document).ready(function() {
+      var videoContainer = $("#video-container");
+      var iframe = videoContainer.find("iframe");
+      iframe.insertBefore(videoContainer);
+    });
   </script>
 </body>
 
