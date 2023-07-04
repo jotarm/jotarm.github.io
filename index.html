@@ -211,7 +211,6 @@ opacity:0.7;
 
 
     </style>
-<script src="https://www.youtube.com/iframe_api"></script>
 <meta charset="utf-8">
 <title>JotaSoft Host 9.00 OF</title>
 		<script>
@@ -712,35 +711,17 @@ tempC.value=60;
 
   <!-- Script para cargar el reproductor de YouTube -->
   <script>
-    var player;
-
-    // Carga el reproductor de YouTube
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player("video-container", {
-        videoId: "VIDEO_ID", // Reemplaza con el ID del video de YouTube
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          modestbranding: 1,
-          loop: 1,
-          playlist: "JahV2H9iChM" // Reemplaza con el ID del video de YouTube
-        },
-        events: {
-          onReady: onPlayerReady
-        }
-      });
+    // Crea un iframe y lo inserta en el contenedor
+    function loadYouTubeVideo() {
+      var container = document.getElementById("video-container");
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/JahV2H9iChM?autoplay=1";
+      iframe.allowFullscreen = true;
+      container.appendChild(iframe);
     }
 
-    // Función ejecutada cuando el reproductor está listo
-    function onPlayerReady(event) {
-      event.target.mute(); // Reproduce el video sin sonido
-    }
-
-    // Carga la API de YouTube
-    var tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // Ejecuta la función para cargar el video cuando se cargue la página
+    window.onload = loadYouTubeVideo;
   </script>
 </body>
 
