@@ -1,7 +1,7 @@
 <html manifest="Cache.manifest">
 <head>
 <style>
-    html, body{
+    html{
 margin:auto;
 font-family:sans-serif;
 font-size:20px;
@@ -10,6 +10,24 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
+body{
+	margin: 0;
+	padding: 0;
+}
+#video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    #video-container iframe {
+      width: 100%;
+      height: 100%;
+    }
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -682,7 +700,8 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-<div id="video-container"></div>
+<!-- El div donde se mostrará el video -->
+  <div id="video-container"></div>
 
   <!-- Script para cargar el reproductor de YouTube -->
   <script>
@@ -691,8 +710,6 @@ tempC.value=60;
       var container = document.getElementById("video-container");
       var iframe = document.createElement("iframe");
       iframe.src = "https://www.youtube.com/embed/KzPy6EOF5S8?autoplay=1";
-      iframe.width = "560";
-      iframe.height = "315";
       iframe.allowFullscreen = true;
       container.appendChild(iframe);
     }
