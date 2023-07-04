@@ -10,7 +10,7 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
- body {
+  body {
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -706,22 +706,40 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-<!-- El div donde se mostrará el video -->
+ <!-- El div donde se mostrará el video -->
   <div id="video-container"></div>
 
   <!-- Script para cargar el reproductor de YouTube -->
   <script>
-    // Crea un iframe y lo inserta en el contenedor
-    function loadYouTubeVideo() {
-      var container = document.getElementById("video-container");
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube.com/embed/JahV2H9iChM?autoplay=1";
-      iframe.allowFullscreen = true;
-      container.appendChild(iframe);
+    var player;
+
+    // Carga el reproductor de YouTube
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("video-container", {
+        videoId: "VIDEO_ID", // Reemplaza con el ID del video de YouTube
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: "JahV2H9iChM" // Reemplaza con el ID del video de YouTube
+        },
+        events: {
+          onReady: onPlayerReady
+        }
+      });
     }
 
-    // Ejecuta la función para cargar el video cuando se cargue la página
-    window.onload = loadYouTubeVideo;
+    // Función ejecutada cuando el reproductor está listo
+    function onPlayerReady(event) {
+      event.target.mute(); // Reproduce el video sin sonido
+    }
+
+    // Carga la API de YouTube
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   </script>
 </body>
 
