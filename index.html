@@ -1,7 +1,7 @@
 <html manifest="Cache.manifest">
 <head>
 <style>
-    html{
+    html, body{
 margin:auto;
 font-family:sans-serif;
 font-size:20px;
@@ -10,29 +10,7 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
-   body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    #video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    #video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+   
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -211,7 +189,6 @@ opacity:0.7;
 
 
     </style>
-	 <script src="https://www.youtube.com/iframe_api"></script>
 <meta charset="utf-8">
 <title>JotaSoft Host 9.00 OF</title>
 		<script>
@@ -707,41 +684,7 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
-  <!-- El div donde se mostrará el video -->
-  <div id="video-container"></div>
-
-  <!-- Script para cargar el reproductor de YouTube -->
-  <script>
-    var player;
-
-    // Carga el reproductor de YouTube
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player("video-container", {
-        videoId: "JahV2H9iChM", // Reemplaza con el ID del video de YouTube
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          modestbranding: 1,
-          loop: 1,
-          playlist: "JahV2H9iChM" // Reemplaza con el ID del video de YouTube
-        },
-        events: {
-          onReady: onPlayerReady
-        }
-      });
-    }
-
-    // Función ejecutada cuando el reproductor está listo
-    function onPlayerReady(event) {
-      event.target.unMute(); // Reproduce el video sin sonido
-    }
-
-    // Carga la API de YouTube
-    var tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  </script>
+ 
 </body>
 
 </html>
