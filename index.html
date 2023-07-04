@@ -10,9 +10,10 @@ text-align:left;
 color:#FFFFFF;
 background-size:cover;
 }
-  body {
+   body {
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
 
     #video-container {
@@ -22,9 +23,13 @@ background-size:cover;
       width: 100%;
       height: 100%;
       z-index: -1;
+      pointer-events: none;
     }
 
     #video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
     }
@@ -206,7 +211,7 @@ opacity:0.7;
 
 
     </style>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	 <script src="https://www.youtube.com/iframe_api"></script>
 <meta charset="utf-8">
 <title>JotaSoft Host 9.00 OF</title>
 		<script>
@@ -702,18 +707,40 @@ for(var i=50; i<=80; i=i+5){
 }
 tempC.value=60;
 </script>
- <!-- El contenedor del video -->
-  <div id="video-container">
-    <iframe src="https://www.youtube.com/embed/JahV2H9iChM?autoplay=1" allowfullscreen></iframe>
-  </div>
+  <!-- El div donde se mostrará el video -->
+  <div id="video-container"></div>
 
-  <!-- Script para mover el iframe detrás de otros elementos -->
+  <!-- Script para cargar el reproductor de YouTube -->
   <script>
-    $(document).ready(function() {
-      var videoContainer = $("#video-container");
-      var iframe = videoContainer.find("iframe");
-      iframe.insertBefore(videoContainer);
-    });
+    var player;
+
+    // Carga el reproductor de YouTube
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("video-container", {
+        videoId: "VIDEO_ID", // Reemplaza con el ID del video de YouTube
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: "JahV2H9iChM" // Reemplaza con el ID del video de YouTube
+        },
+        events: {
+          onReady: onPlayerReady
+        }
+      });
+    }
+
+    // Función ejecutada cuando el reproductor está listo
+    function onPlayerReady(event) {
+      event.target.mute(); // Reproduce el video sin sonido
+    }
+
+    // Carga la API de YouTube
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   </script>
 </body>
 
